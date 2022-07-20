@@ -1,0 +1,8 @@
+.item1 {
+  color: rgb(241, 246, 246);
+  text-decoration: none;
+}
+
+.active {
+  color: gold;
+}

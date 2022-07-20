@@ -1,0 +1,11 @@
+.dialogs .active {
+  color: gold;
+}
+
+.dialogs {
+  color: black;
+  text-decoration: none;
+}
+
+.dialogsItems {
+}

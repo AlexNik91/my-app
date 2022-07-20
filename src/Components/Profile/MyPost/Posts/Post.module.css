@@ -1,0 +1,17 @@
+.item {
+  color: black;
+}
+
+.item img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+
+span {
+  color: blueviolet;
+}
+
+button {
+  margin-right: 1%;
+}

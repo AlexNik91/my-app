@@ -1,0 +1,11 @@
+.nav {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  grid-area: "n c";
+}
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  padding: 20px;
+  grid-area: "n c";
+}
