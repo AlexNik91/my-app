@@ -2,8 +2,9 @@ import React from "react";
 import classes from "./NavBar.module.css";
 import { NavLink, Link } from "react-router-dom";
 import "./NavBar.css";
+import FriendImg from "../Friends/FriendBar";
 
-const NavBar = () => {
+const NavBar = (props) => {
   return (
     <nav className={classes.nav}>
       <div className="item1">
@@ -24,15 +25,23 @@ const NavBar = () => {
         </NavLink>
       </div>
 
-      <div className={classes.item1}>
+      <div className="item1">
         <NavLink to="/music" className="item1">
           music
         </NavLink>
       </div>
 
-      <div className={classes.item1}>
+      <div className="item2">
         <NavLink to="/settings" className="item1">
           settings
+        </NavLink>
+      </div>
+      <div className="item1">
+        <NavLink to="/Friends" className="item3">
+          Friends
+          <ul>
+            <FriendImg imgData={props.state.imgData} />
+          </ul>
         </NavLink>
       </div>
     </nav>

@@ -1,35 +1,31 @@
 import React from "react";
-import s from "./DialogsItems.module.css";
+
 import { NavLink } from "react-router-dom";
 import "./dialogs1.css";
 
 const DialogItem = (props) => {
   let path = "/dialogs/" + props.id;
   return (
-    <div className="dialogs">
-      <NavLink to={path}>{props.name}</NavLink>
+    <div className="dialogs12">
+      <NavLink to={path} style={{ textDecoration: "none" }}>
+        <div className="dialogs12">
+          <img src={props.img} />
+          {props.name}
+        </div>
+      </NavLink>
     </div>
   );
 };
 
 const DialogsItems = (props) => {
-  let dialogsData = [
-    { id: 1, name: "PeT9" },
-    { id: 2, name: "San9" },
-    { id: 3, name: "Van9" },
-    { id: 4, name: "Tan9" },
-    { id: 5, name: "Gal9" },
-    { id: 6, name: "Ol9" },
-  ];
+  let dialogsUser = props.dialogsData.map((dialog) => (
+    <DialogItem name={dialog.name} id={dialog.id} img={dialog.img} />
+  ));
+
   return (
-    <nav className={s.nav}>
+    <nav className="">
       <div className="dialogsItems">
-        <DialogItem name={dialogsData[0].name} id={dialogsData[0].id} />
-        <DialogItem name={dialogsData[1].name} id={dialogsData[1].id} />
-        <DialogItem name="Tan9" id="3" />
-        <DialogItem name="Gal9" id="4" />
-        <DialogItem name="An9" id="5" />
-        <DialogItem name="Gal9" id="6" />
+        <div>{dialogsUser}</div>
       </div>
     </nav>
   );

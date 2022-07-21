@@ -1,11 +1,14 @@
-.dialogs .active {
-  color: gold;
-}
-
-.dialogs {
-  color: black;
-  text-decoration: none;
+.dialogs12 img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
 }
 
 .dialogsItems {
+  color: black;
+}
+.active {
+  color: gold;
+}
+.dialogs12 {
 }

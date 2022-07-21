@@ -1,8 +1,31 @@
 .item1 {
   color: rgb(241, 246, 246);
   text-decoration: none;
+
+  margin-bottom: 5%;
 }
 
+.item2 {
+  color: rgb(241, 246, 246);
+  text-decoration: none;
+
+  margin-bottom: 15%;
+}
+.item3 {
+  color: rgb(241, 246, 246);
+  text-decoration: none;
+  font-size: larger;
+  margin-bottom: 5%;
+}
+
+.item3 img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+ul {
+  display: inline;
+}
 .active {
   color: gold;
 }

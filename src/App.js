@@ -10,20 +10,31 @@ import Profile from "./Components/Profile/Profile";
 import Settings from "./Components/settings/settings";
 import News from "./Components/news/news";
 import Music from "./Components/music/music";
+import FriendBar from "./Components/Friends/Friends";
 
-const App = () => {
+const App = (props) => {
   return (
     <div className="app-wrapper">
       <Header />
-      <NavBar />
+      <NavBar state={props.state.dialogState} />
 
       <div className="app-wrapper-content">
         <Routes>
-          <Route path="/dialogs" element={<Dialogs />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/dialogs"
+            element={<Dialogs state={props.state.dialogState} />}
+          />
+          <Route
+            path="/profile"
+            element={<Profile state={props.state.postState} />}
+          />
           <Route path="/news" element={<News />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/music" element={<Music />} />
+          <Route
+            path="/Friends"
+            element={<FriendBar state={props.state.dialogState} />}
+          />
         </Routes>
       </div>
     </div>
