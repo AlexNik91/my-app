@@ -12,7 +12,12 @@ const Dialogs = (props) => {
           <DialogsItems dialogsData={props.state.dialogsData} />
         </div>
 
-        <Messages messageData={props.state.messageData} />
+        <Messages
+          messageData={props.state.messageData}
+          addMessage={props.addMessage}
+          newMessageText={props.state.newMessageText}
+          messageChange={props.messageChange}
+        />
       </div>
     </nav>
   );

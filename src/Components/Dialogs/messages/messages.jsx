@@ -1,27 +1,38 @@
 import React from "react";
-import item from "./messages.module.css";
 
-const Message = (props) => {
-  return (
-    <div className={item.message}>
-      {props.message}
-      <div className={item.addMessage}>
-        <div>
-          <textarea cols="40" rows="1"></textarea>
-        </div>
-        <div>
-          <button>add</button>
-        </div>
-      </div>
-    </div>
-  );
-};
+import Message from "../messageItem/messageItem";
+import item from "./messages.module.css";
 
 const Messages = (props) => {
   let messagArray = props.messageData.map((m) => (
-    <Message message={m.message} />
+    <Message message={m.message} id={m.id} />
   ));
-  return <div className={item.messages}>{messagArray}</div>;
-};
+  let addTextMessages = React.createRef();
 
+  let addMessage = () => {
+    props.addMessage();
+  };
+  let onMessageChange = () => {
+    let text = addTextMessages.current.value;
+    props.messageChange(text);
+  };
+
+  return (
+    <div>
+      <div>
+        <textarea
+          onChange={onMessageChange}
+          ref={addTextMessages}
+          value={props.newMessageText}
+          cols="40"
+          rows="1"
+        />
+      </div>
+      <div>
+        <button onClick={addMessage}>add</button>
+      </div>
+      <div className={item.messages}>{messagArray}</div>
+    </div>
+  );
+};
 export default Messages;
