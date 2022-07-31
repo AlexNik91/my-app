@@ -1,5 +1,6 @@
 import React from "react";
 import "./FriendBar.css";
+import { NavLink } from "react-router-dom";
 
 const FriendItem = (props) => {
   return (
@@ -18,7 +19,15 @@ const FriendImg = (props) => {
   return (
     <nav className="">
       <div className="dialogsItems">
-        <div>{friendUser}</div>
+        <NavLink to={friendUser}>
+          <div>{friendUser[0]}</div>
+        </NavLink>
+        <NavLink to={friendUser}>
+          <div>{friendUser[1]}</div>
+        </NavLink>
+        <NavLink to={friendUser}>
+          <div>{friendUser[2]}</div>
+        </NavLink>
       </div>
     </nav>
   );
