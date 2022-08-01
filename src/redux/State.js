@@ -1,4 +1,9 @@
-let store = {
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+const ADD_MESSAGE = "ADD-MESSAGE";
+const MESSAGE_CHEINGE = "MESSAGE-CHEINGE";
+
+export let store = {
   _state: {
     postState: {
       postsData: [
@@ -9,7 +14,7 @@ let store = {
         { lekesKount: 1, id: 5, messages: "Its my big post" },
         { lekesKount: 7, id: 6, messages: "Its my bang post" },
       ],
-      newPostText: "sadad",
+      newPostText: "bll ui",
     },
     dialogState: {
       messageData: [
@@ -70,45 +75,96 @@ let store = {
     },
   },
   getState() {
-    debugger;
     return this._state;
   },
   renderApp() {
-    console.log("state chenged");
+    console.log("state changed");
   },
-  addPost() {
-    let newPost = {
-      id: 7,
-      messages: this._state.postState.newPostText,
-      lekesKount: 0,
-    };
-    this._state.postState.postsData.push(newPost);
-    this._state.postState.newPostText = "";
-    this._renderApp(this._state);
-  },
-  addMessage() {
-    let newMessage = {
-      id: 7,
-      message: this._state.dialogState.newMessageText,
-    };
-    this._state.dialogState.messageData.push(newMessage);
-    this._state.dialogState.newMessageText = "";
-    this._renderApp(this._state);
-  },
-  messageChange(newText) {
-    this._state.dialogState.newMessageText = newText;
 
-    this._renderApp(this._state);
-  },
-  updateNewPostText(newText) {
-    this._state.postState.newPostText = newText;
-    this._renderApp(this._state);
+  dispatch(action) {
+    //{ type : 'ADD POST}
+    if (action.type === "ADD-POST") {
+      let newPost = {
+        id: 7,
+        messages: this._state.postState.newPostText,
+        lekesKount: 0,
+      };
+      this._state.postState.postsData.push(newPost);
+      this._state.postState.newPostText = "";
+      this._renderApp(this._state);
+    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+      this._state.postState.newPostText = action.newText;
+      this._renderApp(this._state);
+    } else if (action.type === "ADD-MESSAGE") {
+      let newMessage = {
+        id: 7,
+        message: this._state.dialogState.newMessageText,
+      };
+      this._state.dialogState.messageData.push(newMessage);
+      this._state.dialogState.newMessageText = "";
+      this._renderApp(this._state);
+    } else if (action.type === "MESSAGE-CHEINGE") {
+      this._state.dialogState.newMessageText = action.newText;
+      this._renderApp(this._state);
+    }
   },
   subscribe(observer) {
     this._renderApp = observer;
   },
 };
 
-export default store;
+export const addPostActionCreator = () => {
+  return {
+    type: ADD_POST,
+  };
+};
 
-window.store = store;
+export const addPostChangeActionCreator = (text) => {
+  return {
+    type: UPDATE_NEW_POST_TEXT,
+    newText: text,
+  };
+};
+
+export const actionAddMessage = () => {
+  return {
+    type: ADD_MESSAGE,
+  };
+};
+export const actionOnMessageChange = (text) => {
+  return {
+    type: MESSAGE_CHEINGE,
+    newText: text,
+  };
+};
+
+// addPost() {
+//   let newPost = {
+//     id: 7,
+//     messages: this._state.postState.newPostText,
+//     lekesKount: 0,
+//   };
+//   this._state.postState.postsData.push(newPost);
+//   this._state.postState.newPostText = "";
+//   this._renderApp(this._state);
+// },
+// addMessage() {
+//   let newMessage = {
+//     id: 7,
+//     message: this._state.dialogState.newMessageText,
+//   };
+//   this._state.dialogState.messageData.push(newMessage);
+//   this._state.dialogState.newMessageText = "";
+//   this._renderApp(this._state);
+// },
+// messageChange(newText) {
+//   this._state.dialogState.newMessageText = newText;
+
+//   this._renderApp(this._state);
+// },
+// updateNewPostText(newText) {
+//   this._state.postState.newPostText = newText;
+//   this._renderApp(this._state);
+// },
+
+export default store;

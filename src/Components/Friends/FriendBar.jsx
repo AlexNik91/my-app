@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const FriendItem = (props) => {
   return (
     <div className="inLine">
-      <img src={props.img}></img>
+      <img alt="1" src={props.img}></img>
       {props.name}
     </div>
   );
@@ -19,13 +19,13 @@ const FriendImg = (props) => {
   return (
     <nav className="">
       <div className="dialogsItems">
-        <NavLink to={friendUser}>
+        <NavLink to="/Friends">
           <div>{friendUser[0]}</div>
         </NavLink>
-        <NavLink to={friendUser}>
+        <NavLink to="/Friends">
           <div>{friendUser[1]}</div>
         </NavLink>
-        <NavLink to={friendUser}>
+        <NavLink to="/Friends">
           <div>{friendUser[2]}</div>
         </NavLink>
       </div>

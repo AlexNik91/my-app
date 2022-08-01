@@ -1,4 +1,5 @@
 import React from "react";
+import { actionAddMessage, actionOnMessageChange } from "../../../redux/State";
 
 import Message from "../messageItem/messageItem";
 import item from "./messages.module.css";
@@ -10,11 +11,12 @@ const Messages = (props) => {
   let addTextMessages = React.createRef();
 
   let addMessage = () => {
-    props.addMessage();
+    // props.addMessage();
+    props.dispatch(actionAddMessage());
   };
   let onMessageChange = () => {
     let text = addTextMessages.current.value;
-    props.messageChange(text);
+    props.dispatch(actionOnMessageChange(text));
   };
 
   return (

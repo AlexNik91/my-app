@@ -14,9 +14,8 @@ const Dialogs = (props) => {
 
         <Messages
           messageData={props.state.messageData}
-          addMessage={props.addMessage}
           newMessageText={props.state.newMessageText}
-          messageChange={props.messageChange}
+          dispatch={props.dispatch}
         />
       </div>
     </nav>

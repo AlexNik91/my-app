@@ -1,4 +1,4 @@
-import store from "./redux/State";
+import { store } from "./redux/State";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
@@ -9,13 +9,7 @@ const renderApp = (state) => {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <App
-          state={state}
-          addPost={store.addPost.bind(store)}
-          updateNewPostText={store.updateNewPostText.bind(store)}
-          addMessage={store.addMessage.bind(store)}
-          messageChange={store.messageChange.bind(store)}
-        />
+        <App state={state} dispatch={store.dispatch.bind(store)} />
       </BrowserRouter>
     </React.StrictMode>
   );
