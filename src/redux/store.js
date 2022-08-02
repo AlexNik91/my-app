@@ -1,7 +1,6 @@
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-const ADD_MESSAGE = "ADD-MESSAGE";
-const MESSAGE_CHEINGE = "MESSAGE-CHEINGE";
+import dialogsReducer from "./reducers/DialogsReducer";
+import friendReducer from "./reducers/friendReducer";
+import profileReducer from "./reducers/ProfileReducer";
 
 export let store = {
   _state: {
@@ -57,6 +56,11 @@ export let store = {
           name: "Ol9",
         },
       ],
+
+      newMessageText: " ",
+    },
+
+    friendState: {
       imgData: [
         {
           name: "San9",
@@ -71,7 +75,6 @@ export let store = {
           img: "https://klike.net/uploads/posts/2019-03/1551511801_1.jpg",
         },
       ],
-      newMessageText: " ",
     },
   },
   getState() {
@@ -82,60 +85,14 @@ export let store = {
   },
 
   dispatch(action) {
-    //{ type : 'ADD POST}
-    if (action.type === "ADD-POST") {
-      let newPost = {
-        id: 7,
-        messages: this._state.postState.newPostText,
-        lekesKount: 0,
-      };
-      this._state.postState.postsData.push(newPost);
-      this._state.postState.newPostText = "";
-      this._renderApp(this._state);
-    } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-      this._state.postState.newPostText = action.newText;
-      this._renderApp(this._state);
-    } else if (action.type === "ADD-MESSAGE") {
-      let newMessage = {
-        id: 7,
-        message: this._state.dialogState.newMessageText,
-      };
-      this._state.dialogState.messageData.push(newMessage);
-      this._state.dialogState.newMessageText = "";
-      this._renderApp(this._state);
-    } else if (action.type === "MESSAGE-CHEINGE") {
-      this._state.dialogState.newMessageText = action.newText;
-      this._renderApp(this._state);
-    }
+    this._state.postState = profileReducer(this._state.postState, action);
+    this._state.dialogState = dialogsReducer(this._state.dialogState, action);
+    this._state.friendState = friendReducer(this._state.friendState, action);
+    this._renderApp(this._state);
   },
   subscribe(observer) {
     this._renderApp = observer;
   },
-};
-
-export const addPostActionCreator = () => {
-  return {
-    type: ADD_POST,
-  };
-};
-
-export const addPostChangeActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    newText: text,
-  };
-};
-
-export const actionAddMessage = () => {
-  return {
-    type: ADD_MESSAGE,
-  };
-};
-export const actionOnMessageChange = (text) => {
-  return {
-    type: MESSAGE_CHEINGE,
-    newText: text,
-  };
 };
 
 // addPost() {
@@ -166,5 +123,3 @@ export const actionOnMessageChange = (text) => {
 //   this._state.postState.newPostText = newText;
 //   this._renderApp(this._state);
 // },
-
-export default store;

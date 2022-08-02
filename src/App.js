@@ -16,35 +16,24 @@ const App = (props) => {
   return (
     <div className="app-wrapper">
       <Header />
-      <NavBar state={props.state.dialogState} />
+      <NavBar state={props.state.friendState} />
 
       <div className="app-wrapper-content">
         <Routes>
           <Route
             path="/dialogs"
-            element={
-              <Dialogs
-                state={props.state.dialogState}
-                dispatch={props.dispatch}
-              />
-            }
+            element={<Dialogs store={props.state} dispatch={props.dispatch} />}
           />
           <Route
             path="/profile"
-            element={
-              <Profile
-                state={props.state.postState}
-                dispatch={props.dispatch}
-                updateNewPostText={props.updateNewPostText}
-              />
-            }
+            element={<Profile store={props.state} dispatch={props.dispatch} />}
           />
           <Route path="/news" element={<News />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/music" element={<Music />} />
           <Route
             path="/Friends"
-            element={<FriendBar state={props.state.dialogState} />}
+            element={<FriendBar state={props.state.friendState} />}
           />
         </Routes>
       </div>
