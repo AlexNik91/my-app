@@ -13,7 +13,7 @@ const Dialogs = (props) => {
           <DialogsItems dialogsData={props.store.dialogState.dialogsData} />
         </div>
 
-        <MessagesContainer store={props.store} dispatch={props.dispatch} />
+        <MessagesContainer />
       </div>
     </nav>
   );

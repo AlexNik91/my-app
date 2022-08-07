@@ -3,22 +3,18 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App.js";
-import StoreContext from "./storeContext";
+import { Provider } from "react-redux";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 const renderApp = (state) => {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <StoreContext.Provider>
-          <App state={state} dispatch={store.dispatch.bind(store)} />
-        </StoreContext.Provider>
+        <Provider store={store}>
+          <App state={state} />
+        </Provider>
       </BrowserRouter>
     </React.StrictMode>
   );
 };
 renderApp(store.getState());
-store.subscribe(() => {
-  let state = store.getState();
-  renderApp(state);
-});
