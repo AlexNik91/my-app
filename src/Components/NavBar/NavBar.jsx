@@ -31,6 +31,12 @@ const NavBar = (props) => {
         </NavLink>
       </div>
 
+      <div className="item1">
+        <NavLink to="/UsersContainer" className="item1">
+          FindUsers
+        </NavLink>
+      </div>
+
       <div className="item2">
         <NavLink to="/settings" className="item1">
           settings

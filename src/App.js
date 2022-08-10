@@ -11,6 +11,7 @@ import Settings from "./Components/settings/settings";
 import News from "./Components/news/news";
 import Music from "./Components/music/music";
 import FriendBar from "./Components/Friends/Friends";
+import UsersContainer from "./Components/Find-Users/UsersContainer";
 
 const App = (props) => {
   return (
@@ -23,6 +24,7 @@ const App = (props) => {
           <Route path="/dialogs" element={<Dialogs store={props.state} />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/news" element={<News />} />
+          <Route path="/UsersContainer" element={<UsersContainer />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/music" element={<Music />} />
           <Route
