@@ -1,5 +1,5 @@
 import React from "react";
-import userPhoto from "./../../../src/images.png";
+import userPhoto from "./../../../src/images/images.png";
 import styles from "./Users.module.css";
 
 const Users = (props) => {
