@@ -63,12 +63,12 @@ const dialogsReducer = (state = inicialState, action) => {
       return state;
   }
 };
-export const actionAddMessage = () => {
+export const addMessage = () => {
   return {
     type: ADD_MESSAGE,
   };
 };
-export const actionOnMessageChange = (text) => {
+export const onMessageChange = (text) => {
   return {
     type: MESSAGE_CHEINGE,
     newText: text,

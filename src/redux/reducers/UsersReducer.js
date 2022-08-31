@@ -1,16 +1,20 @@
+import { getUsers } from "../../API/API";
+
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USER = "SET_USER";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_COUNT = "SET_TOTAL_COUNT";
 const SET_LOADER = "SET_LOADER";
+const SET_FOLLOWING_LOADER = "SET_FOLLOWING_LOADER";
 
 let inicialState = {
   users: [],
-  pageSize: 5,
+  pageSize: 10,
   totalUsersCount: 0,
-  curentPage: 1,
+  curentPage: 2,
   isFetching: true,
+  followInProgess: [],
 };
 
 const UsersReducer = (state = inicialState, action) => {
@@ -53,35 +57,58 @@ const UsersReducer = (state = inicialState, action) => {
         ...state,
         isFetching: action.isFetching,
       };
+    case SET_FOLLOWING_LOADER:
+      return {
+        ...state,
+        followInProgess: action.isFetching
+          ? [...state.followInProgess, action.userId]
+          : state.followInProgess.filter((id) => id != action.userId),
+      };
 
     default:
       return state;
   }
 };
 
-export const followAC = (userId) => ({
+export const follow = (userId) => ({
   type: FOLLOW,
   userId,
 });
-export const unfollowAC = (userId) => ({
+export const unfollow = (userId) => ({
   type: UNFOLLOW,
   userId,
 });
-export const setUsersAC = (users) => ({
+export const setUsers = (users) => ({
   type: SET_USER,
   users,
 });
-export const setCurrentPageAC = (curentPage) => ({
+export const setCurrentPage = (curentPage) => ({
   type: SET_CURRENT_PAGE,
   curentPage,
 });
-export const setTotalUsersCountAC = (totalUsersCount) => ({
+export const setTotalUsersCount = (totalUsersCount) => ({
   type: SET_TOTAL_COUNT,
   count: totalUsersCount,
 });
-export const setIsFetchingAC = (isFetching) => ({
+export const setIsFetching = (isFetching) => ({
   type: SET_LOADER,
   isFetching,
 });
+export const setFollowInProgess = (isFetching, userId) => ({
+  type: SET_FOLLOWING_LOADER,
+  isFetching,
+  userId,
+});
+
+export const getUsersThunkCreator = (curentPage, pageSize) => {
+  return (dispath) => {
+    dispath(setIsFetching(true));
+    getUsers(curentPage, pageSize).then((data) => {
+      dispath(setIsFetching(false));
+      dispath(setUsers(data.items));
+      dispath(setTotalUsersCount(data.totalCount));
+    });
+  };
+};
 
 export default UsersReducer;

@@ -6,3 +6,14 @@
 .header img {
   width: 95px;
 }
+
+.logBlock {
+  float: right;
+  color: aliceblue;
+  text-decoration: none;
+}
+
+.logBlock a {
+  color: aliceblue;
+  text-decoration: none;
+}
