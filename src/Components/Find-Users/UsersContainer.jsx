@@ -1,5 +1,4 @@
 import React from "react";
-
 import { connect } from "react-redux";
 import {
   follow,
@@ -7,9 +6,13 @@ import {
   setCurrentPage,
   setFollowInProgess,
   getUsersThunkCreator,
+  getFollowThunkCreator,
+  getUnfollowThunkCreator,
 } from "../../redux/reducers/UsersReducer";
 import Users from "./Users";
 import IsLoader from "../commen/commenFile/loader.jsx";
+import { compose } from "redux";
+import { AuthHoc } from "../../hoc/AuthNavigate";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -30,10 +33,9 @@ class UsersContainer extends React.Component {
           curentPage={this.props.curentPage}
           onPageClick={this.onPageClick}
           users={this.props.users}
-          follow={this.props.follow}
-          unfollow={this.props.unfollow}
-          setFollowInProgess={this.props.setFollowInProgess}
           followInProgess={this.props.followInProgess}
+          getFollow={this.props.getFollow}
+          getUnfollow={this.props.getUnfollow}
         />
       </>
     );
@@ -51,10 +53,15 @@ let MapStateToProps = (state) => {
   };
 };
 
-export default connect(MapStateToProps, {
-  follow,
-  unfollow,
-  setCurrentPage,
-  setFollowInProgess,
-  getUser: getUsersThunkCreator,
-})(UsersContainer);
+export default compose(
+  connect(MapStateToProps, {
+    follow,
+    unfollow,
+    setCurrentPage,
+    setFollowInProgess,
+    getUser: getUsersThunkCreator,
+    getFollow: getFollowThunkCreator,
+    getUnfollow: getUnfollowThunkCreator,
+  }),
+  AuthHoc
+)(UsersContainer);

@@ -3,8 +3,6 @@ import userPhoto from "./../../../src/Components/commen/images/images.png";
 import styles from "./Users.module.css";
 import { NavLink } from "react-router-dom";
 
-import { getUsersFollow, getUsersUnfollow } from "../../API/API";
-
 const Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
 
@@ -49,13 +47,7 @@ const Users = (props) => {
                   <button
                     disabled={props.followInProgess.some((id) => id === u.id)}
                     onClick={() => {
-                      props.setFollowInProgess(true, u.id);
-                      getUsersUnfollow(u.id).then((data) => {
-                        if (data.resultCode == 0) {
-                          props.unfollow(u.id);
-                        }
-                        props.setFollowInProgess(false, u.id);
-                      });
+                      props.getFollow(u.id);
                     }}
                   >
                     unfollow
@@ -64,13 +56,7 @@ const Users = (props) => {
                   <button
                     disabled={props.followInProgess.some((id) => id === u.id)}
                     onClick={() => {
-                      props.setFollowInProgess(true, u.id);
-                      getUsersFollow(u.id).then((data) => {
-                        if (data.resultCode === 0) {
-                          props.follow(u.id);
-                        }
-                        props.setFollowInProgess(false, u.id);
-                      });
+                      props.getUnfollow(u.id);
                     }}
                   >
                     follow

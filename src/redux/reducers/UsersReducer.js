@@ -1,4 +1,4 @@
-import { getUsers } from "../../API/API";
+import { usersAPI } from "../../API/API";
 
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
@@ -101,12 +101,36 @@ export const setFollowInProgess = (isFetching, userId) => ({
 });
 
 export const getUsersThunkCreator = (curentPage, pageSize) => {
-  return (dispath) => {
-    dispath(setIsFetching(true));
-    getUsers(curentPage, pageSize).then((data) => {
-      dispath(setIsFetching(false));
-      dispath(setUsers(data.items));
-      dispath(setTotalUsersCount(data.totalCount));
+  return (dispatch) => {
+    dispatch(setIsFetching(true));
+    usersAPI.user(curentPage, pageSize).then((data) => {
+      dispatch(setIsFetching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
+    });
+  };
+};
+
+export const getFollowThunkCreator = (userId) => {
+  return (dispatch) => {
+    dispatch(setFollowInProgess(true, userId));
+    usersAPI.usersUnfollow(userId).then((data) => {
+      if (data.resultCode == 0) {
+        dispatch(unfollow(userId));
+      }
+      dispatch(setFollowInProgess(false, userId));
+    });
+  };
+};
+
+export const getUnfollowThunkCreator = (userId) => {
+  return (dispatch) => {
+    dispatch(setFollowInProgess(true, userId));
+    usersAPI.usersFollow(userId).then((data) => {
+      if (data.resultCode === 0) {
+        dispatch(follow(userId));
+      }
+      dispatch(setFollowInProgess(false, userId));
     });
   };
 };
