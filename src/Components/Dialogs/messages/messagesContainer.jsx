@@ -1,7 +1,4 @@
-import {
-  addMessage,
-  onMessageChange,
-} from "../../../redux/reducers/DialogsReducer";
+import { addMessage } from "../../../redux/reducers/DialogsReducer";
 import { connect } from "react-redux";
 import Messages from "./messages";
 
@@ -37,6 +34,5 @@ export default compose(
   AuthHoc,
   connect(mapStateToProps, {
     addMessage,
-    onMessageChange,
   })
 )(Messages);

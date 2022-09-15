@@ -1,7 +1,8 @@
 import React from "react";
 
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 import { connect } from "react-redux/es/exports";
+// import { useAuthContext } from "./hook/authHook";
 
 let mapStateToPropsForAuth = (state) => ({
   isAuth: state.authUser.isAuth,
@@ -9,7 +10,9 @@ let mapStateToPropsForAuth = (state) => ({
 
 export const AuthHoc = (Component) => {
   let WhithAuthNavigate = (props) => {
-    if (props.isAuth == false) return <Navigate to={"/login"} />;
+    const location = useLocation();
+    if (props.isAuth == false)
+      return <Navigate to={"/login"} state={{ from: location.pathname }} />;
     return <Component {...props} />;
   };
   let AuthNavigateComponent = connect(mapStateToPropsForAuth)(
@@ -17,6 +20,15 @@ export const AuthHoc = (Component) => {
   );
   return AuthNavigateComponent;
 };
+
+// export const Hoc = (children) => {
+//   const location = useLocation();
+//   const { user } = useAuthContext();
+//   if (!user) {
+//     return <Navigate to={"/login"} state={{ from: location }} />;
+//   }
+//   return children;
+// };
 
 // const AuthHoc = (Component) => {
 //   class authNavigate extends React.Component {

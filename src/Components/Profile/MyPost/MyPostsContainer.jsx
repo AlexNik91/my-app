@@ -1,8 +1,5 @@
 import MyPosts from "./MyPosts";
-import {
-  addPost,
-  updateNewPostText,
-} from "../../../redux/reducers/ProfileReducer";
+import { addPost } from "../../../redux/reducers/ProfileReducer";
 import { connect } from "react-redux";
 import { compose } from "redux";
 
@@ -28,6 +25,5 @@ let mapStateToProps = (state) => {
 export default compose(
   connect(mapStateToProps, {
     addPost,
-    updateNewPostText,
   })
 )(MyPosts);

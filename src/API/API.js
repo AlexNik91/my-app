@@ -50,4 +50,21 @@ export const getAuthMe = {
       return respons.data;
     });
   },
+  login(email, password, rememberMe = false, captcha) {
+    return instance
+      .post(`/auth/login`, { email, password, rememberMe, captcha })
+      .then((respons) => {
+        return respons.data;
+      });
+  },
+  loginOut() {
+    return instance.delete(`/auth/login`).then((respons) => {
+      return respons.data;
+    });
+  },
+  captcha() {
+    return instance.get(`/security/get-captcha-url`).then((respons) => {
+      return respons.data;
+    });
+  },
 };

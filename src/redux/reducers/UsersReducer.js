@@ -12,7 +12,7 @@ let inicialState = {
   users: [],
   pageSize: 10,
   totalUsersCount: 0,
-  curentPage: 2,
+  curentPage: null,
   isFetching: true,
   followInProgess: [],
 };
@@ -100,10 +100,11 @@ export const setFollowInProgess = (isFetching, userId) => ({
   userId,
 });
 
-export const getUsersThunkCreator = (curentPage, pageSize) => {
+export const getUsersThunkCreator = (page, pageSize) => {
   return (dispatch) => {
     dispatch(setIsFetching(true));
-    usersAPI.user(curentPage, pageSize).then((data) => {
+    dispatch(setCurrentPage(page));
+    usersAPI.user(page, pageSize).then((data) => {
       dispatch(setIsFetching(false));
       dispatch(setUsers(data.items));
       dispatch(setTotalUsersCount(data.totalCount));

@@ -1,5 +1,4 @@
 const ADD_MESSAGE = "ADD-MESSAGE";
-const MESSAGE_CHEINGE = "MESSAGE-CHEINGE";
 
 let inicialState = {
   messageData: [
@@ -42,36 +41,27 @@ let inicialState = {
       name: "Ol9",
     },
   ],
-
-  newMessageText: " ",
 };
 
 const dialogsReducer = (state = inicialState, action) => {
   switch (action.type) {
     case ADD_MESSAGE:
-      let newMessage = state.newMessageText;
+      let newMessage = action.newMessageText;
       return {
         ...state,
-        newMessageText: "",
+
         messageData: [...state.messageData, { id: 7, message: newMessage }],
       };
-
-    case MESSAGE_CHEINGE:
-      return { ...state, newMessageText: action.newText };
 
     default:
       return state;
   }
 };
-export const addMessage = () => {
+export const addMessage = (newMessageText) => {
   return {
     type: ADD_MESSAGE,
+    newMessageText,
   };
 };
-export const onMessageChange = (text) => {
-  return {
-    type: MESSAGE_CHEINGE,
-    newText: text,
-  };
-};
+
 export default dialogsReducer;

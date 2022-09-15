@@ -1,0 +1,18 @@
+.error {
+  border: solid red 2px;
+}
+
+.span {
+  color: red;
+}
+
+.input {
+  border: solid red 2px;
+}
+
+.error {
+  color: brown;
+  padding: 10px;
+  border: red 1px solid;
+  width: 126px;
+}
