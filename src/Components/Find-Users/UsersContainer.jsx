@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import {
   follow,
@@ -22,7 +22,7 @@ import {
   curentPageSelector,
 } from "../../redux/reducers/user-selectors";
 
-class UsersContainer extends React.Component {
+class UsersContainer extends PureComponent {
   componentDidMount() {
     this.props.getUser(this.props.curentPage, this.props.pageSize);
   }
@@ -30,6 +30,10 @@ class UsersContainer extends React.Component {
   onPageClick = (page) => {
     this.props.getUser(page, this.props.pageSize);
   };
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps != this.props || nextState != this.state;
+  // }
 
   render() {
     return (

@@ -2,7 +2,7 @@
 // import { stopSubmit } from "redux-form";
 import { getAuthMeThunkCreator } from "./authReducer";
 
-const INICIALAIZED = "INICIALAIZED";
+const INICIALAIZED = "appReducer/INICIALAIZED";
 
 let inicialState = {
   inicialaized: false,

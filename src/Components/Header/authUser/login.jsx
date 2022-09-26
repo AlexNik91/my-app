@@ -14,9 +14,9 @@ import "./../../commen/commenFile/Formscontrols/FormsControl.css";
 import { compose } from "redux";
 import withRouter from "../../Profile/HookProfileContainer";
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error, captchaUrl }) => {
   return (
-    <form onSubmit={props.handleSubmit}>
+    <form onSubmit={handleSubmit}>
       <div>
         <Field
           placeholder="email"
@@ -38,10 +38,10 @@ const LoginForm = (props) => {
         <Field type={"checkbox"} component={"input"} name={"rememberMe"} />
         remember me
       </div>
-      {props.error && <div className="error">{props.error}</div>}
+      {error && <div className="error">{error}</div>}
 
-      {props.captchaUrl && <img src={props.captchaUrl} />}
-      {props.captchaUrl && <Field component={Input} name={"captcha"} />}
+      {captchaUrl && <img src={captchaUrl} />}
+      {captchaUrl && <Field component={Input} name={"captcha"} />}
       <div>
         <button type="submit">login</button>
       </div>

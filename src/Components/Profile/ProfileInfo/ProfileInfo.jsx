@@ -2,7 +2,7 @@ import React from "react";
 import IsLoader from "../../commen/commenFile/loader";
 import s from "./ProfileInfo.module.css";
 import userPhoto from "./../../commen/images/images.png";
-import ProfileStatus from "./StatusProfile";
+import ProfileStatusWhisHooks from "./StatusProfileWhisHooks";
 
 const ProfileInfo1 = (props) => {
   if (!props.profile) return <IsLoader />;
@@ -21,7 +21,7 @@ const ProfileInfo1 = (props) => {
         />
 
         <div>
-          <ProfileStatus
+          <ProfileStatusWhisHooks
             status={props.status}
             updateStatus={props.updateStatus}
           />

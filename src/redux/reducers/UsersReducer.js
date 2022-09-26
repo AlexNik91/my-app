@@ -1,12 +1,12 @@
 import { usersAPI } from "../../API/API";
 
-const FOLLOW = "FOLLOW";
-const UNFOLLOW = "UNFOLLOW";
-const SET_USER = "SET_USER";
-const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
-const SET_TOTAL_COUNT = "SET_TOTAL_COUNT";
-const SET_LOADER = "SET_LOADER";
-const SET_FOLLOWING_LOADER = "SET_FOLLOWING_LOADER";
+const FOLLOW = "usersReducer/FOLLOW";
+const UNFOLLOW = "usersReducer/UNFOLLOW";
+const SET_USER = "usersReducer/SET_USER";
+const SET_CURRENT_PAGE = "usersReducer/SET_CURRENT_PAGE";
+const SET_TOTAL_COUNT = "usersReducer/SET_TOTAL_COUNT";
+const SET_LOADER = "usersReducer/SET_LOADER";
+const SET_FOLLOWING_LOADER = "usersReducer/SET_FOLLOWING_LOADER";
 
 let inicialState = {
   users: [],
@@ -100,40 +100,31 @@ export const setFollowInProgess = (isFetching, userId) => ({
   userId,
 });
 
-export const getUsersThunkCreator = (page, pageSize) => {
-  return (dispatch) => {
-    dispatch(setIsFetching(true));
-    dispatch(setCurrentPage(page));
-    usersAPI.user(page, pageSize).then((data) => {
-      dispatch(setIsFetching(false));
-      dispatch(setUsers(data.items));
-      dispatch(setTotalUsersCount(data.totalCount));
-    });
-  };
+export const getUsersThunkCreator = (page, pageSize) => async (dispatch) => {
+  dispatch(setIsFetching(true));
+  dispatch(setCurrentPage(page));
+  let data = await usersAPI.user(page, pageSize);
+  dispatch(setIsFetching(false));
+  dispatch(setUsers(data.items));
+  dispatch(setTotalUsersCount(data.totalCount));
 };
 
-export const getFollowThunkCreator = (userId) => {
-  return (dispatch) => {
-    dispatch(setFollowInProgess(true, userId));
-    usersAPI.usersUnfollow(userId).then((data) => {
-      if (data.resultCode == 0) {
-        dispatch(unfollow(userId));
-      }
-      dispatch(setFollowInProgess(false, userId));
-    });
-  };
+export const getFollowThunkCreator = (userId) => async (dispatch) => {
+  dispatch(setFollowInProgess(true, userId));
+  let data = await usersAPI.usersUnfollow(userId);
+  if (data.resultCode == 0) {
+    dispatch(unfollow(userId));
+  }
+  dispatch(setFollowInProgess(false, userId));
 };
 
-export const getUnfollowThunkCreator = (userId) => {
-  return (dispatch) => {
-    dispatch(setFollowInProgess(true, userId));
-    usersAPI.usersFollow(userId).then((data) => {
-      if (data.resultCode === 0) {
-        dispatch(follow(userId));
-      }
-      dispatch(setFollowInProgess(false, userId));
-    });
-  };
+export const getUnfollowThunkCreator = (userId) => async (dispatch) => {
+  dispatch(setFollowInProgess(true, userId));
+  let data = await usersAPI.usersFollow(userId);
+  if (data.resultCode === 0) {
+    dispatch(follow(userId));
+  }
+  dispatch(setFollowInProgess(false, userId));
 };
 
 export default UsersReducer;
