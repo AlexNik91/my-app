@@ -3,7 +3,7 @@ import s from "./Dialogs.module.css";
 
 import DialogsItems from "./DialogItem/DialogItem";
 
-import MessagesContainer from "./messages/messagesContainer";
+import DialogsContainer from "./DialogItem/DialogsUserContainer";
 
 const Dialogs = (props) => {
   return (
@@ -13,7 +13,7 @@ const Dialogs = (props) => {
           <DialogsItems dialogsData={props.store.dialogState.dialogsData} />
         </div>
 
-        <MessagesContainer />
+        <DialogsContainer />
       </div>
     </nav>
   );

@@ -43,10 +43,10 @@ const NavBar = (props) => {
         </NavLink>
       </div>
       <div className="item1">
-        <NavLink to="/Friends" className="item3">
+        <NavLink to="/dialogs" className="item3">
           Friends
           <ul>
-            <FriendImg imgData={props.state.imgData} />
+            <FriendImg imgData={props.imgData} />
           </ul>
         </NavLink>
       </div>

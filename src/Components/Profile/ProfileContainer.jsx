@@ -12,15 +12,16 @@ import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    let userId = this.props.router.params.userId;
+    let item = this.props;
+    let userId = item.router.params.userId;
     if (!userId) {
-      userId = this.props.autorizedUserId;
+      userId = item.autorizedUserId;
       if (!userId) {
-        this.props.history.push("/login");
+        item.history.push("/login");
       }
     }
-    this.props.getProfileThunkCreator(userId);
-    this.props.getStatusThunkCreator(userId);
+    item.getProfileThunkCreator(userId);
+    item.getStatusThunkCreator(userId);
   }
 
   render() {

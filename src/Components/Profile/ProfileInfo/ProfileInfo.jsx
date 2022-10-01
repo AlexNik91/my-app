@@ -5,20 +5,15 @@ import userPhoto from "./../../commen/images/images.png";
 import ProfileStatusWhisHooks from "./StatusProfileWhisHooks";
 
 const ProfileInfo1 = (props) => {
-  if (!props.profile) return <IsLoader />;
+  let user = props.profile;
+  if (!user) return <IsLoader />;
   return (
     <div>
       {/* <div>
         <img src="http://qnimate.com/wp-content/uploads/2014/03/images2.jpg" />
       </div> */}
       <div className={s.ava}>
-        <img
-          src={
-            props.profile.photos.large != null
-              ? props.profile.photos.large
-              : userPhoto
-          }
-        />
+        <img src={user.large != null ? user.photos.large : userPhoto} />
 
         <div>
           <ProfileStatusWhisHooks
@@ -27,8 +22,8 @@ const ProfileInfo1 = (props) => {
           />
         </div>
 
-        <div>{props.profile.fullName}</div>
-        <div>{props.profile.contacts.vk}</div>
+        <div>{user.fullName}</div>
+        <div>{user.contacts.vk}</div>
       </div>
     </div>
   );

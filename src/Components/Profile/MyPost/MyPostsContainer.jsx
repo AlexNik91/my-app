@@ -1,4 +1,4 @@
-import MyPosts from "./MyPosts";
+import MyPosts from "./MyPostsWithHuks";
 import { addPost } from "../../../redux/reducers/ProfileReducer";
 import { connect } from "react-redux";
 import { compose } from "redux";

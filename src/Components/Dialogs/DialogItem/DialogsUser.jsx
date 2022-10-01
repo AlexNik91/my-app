@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Message from "../messageItem/messageItem";
-import item from "./messages.module.css";
+
 import { Field, reduxForm } from "redux-form";
 import { Textarea } from "../../commen/commenFile/Formscontrols/FormsControl";
 import {
@@ -8,14 +8,14 @@ import {
   maxLengthCreator,
 } from "../../../utils/validators/validators";
 
-const addMessageForm = (props) => {
+const addDialogForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
       <div>
         <Field
-          onClick={props.addNewMessage}
-          onChange={(event) => props.setNewMessage(event.target.value)}
-          value={props.newMessage}
+          onClick={props.addNewDialogs}
+          onChange={(event) => props.setNewDialogs(event.target.value)}
+          value={props.newDialog}
           placeholder="messages"
           component={Textarea}
           name="newMessageText"
@@ -31,18 +31,18 @@ const addMessageForm = (props) => {
 
 const ReduxMessageForm = reduxForm({
   form: "messageForm",
-})(addMessageForm);
+})(addDialogForm);
 
-const Messages = (props) => {
+const DialogsMessage = (props) => {
   const [message, setMessage] = useState(props.messageData);
-  const [newMessage, setNewMessage] = useState("");
+  const [newDialog, setNewDialogs] = useState("");
 
   let messagArray = message.map((m) => (
     <Message message={m.message} id={m.id} />
   ));
 
-  let addNewMessage = () => {
-    setMessage([...message, { id: Date.now(), message: newMessage }]);
+  let addNewDialogs = () => {
+    setMessage([...message, { id: Date.now(), message: newDialog }]);
   };
   // const onSubmit = (formData) => {
   //   console.log(formData);
@@ -50,14 +50,14 @@ const Messages = (props) => {
 
   return (
     <div>
-      <div className={item.messages}>{messagArray}</div>
+      <div> {messagArray}</div>
       <ReduxMessageForm
-        onSubmit={addNewMessage}
-        setNewMessage={setNewMessage}
-        newMessage={newMessage}
+        onSubmit={addNewDialogs}
+        setNewDialogs={setNewDialogs}
+        newDialog={newDialog}
       />
     </div>
   );
 };
 
-export default Messages;
+export default DialogsMessage;
