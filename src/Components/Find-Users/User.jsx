@@ -1,5 +1,5 @@
 import React from "react";
-import userPhoto from "./../../../src/Components/commen/images/images.png";
+import userPhoto from "./../../Components/commen/images/images.png";
 import styles from "./Users.module.css";
 import { NavLink } from "react-router-dom";
 

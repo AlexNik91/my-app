@@ -13,7 +13,7 @@ const ProfileInfo1 = (props) => {
         <img src="http://qnimate.com/wp-content/uploads/2014/03/images2.jpg" />
       </div> */}
       <div className={s.ava}>
-        <img src={user.large != null ? user.photos.large : userPhoto} />
+        <img src={user.photos.large != null ? user.photos.large : userPhoto} />
 
         <div>
           <ProfileStatusWhisHooks

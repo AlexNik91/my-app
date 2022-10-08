@@ -2,7 +2,6 @@ import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import {} from "../../redux/reducers/UsersReducer";
 
-import IsLoader from "../commen/commenFile/loader.jsx";
 import { compose } from "redux";
 import { AuthHoc } from "../../hoc/AuthNavigate";
 import { isFetchingSelector } from "../../redux/reducers/user-selectors";
@@ -27,4 +26,4 @@ let MapStateToProps = (state) => {
   };
 };
 
-export default compose(connect(MapStateToProps, {}), AuthHoc)(NavBarContainer);
+export default compose(connect(MapStateToProps, {}))(NavBarContainer);

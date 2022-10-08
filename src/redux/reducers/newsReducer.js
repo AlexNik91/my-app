@@ -1,9 +1,11 @@
 import { newsAPI } from "../../API/APInews";
 
 const SET_NEWS = "newsReducer/SET_NEWS";
+const SET_HANDLE_SHOW_MORE = "newsReducer/SET_HANDLE_SHOW_MORE";
 
 let inicialState = {
   news: [],
+  showItems: 10,
 };
 
 const NewsReducer = (state = inicialState, action) => {
@@ -12,6 +14,14 @@ const NewsReducer = (state = inicialState, action) => {
       return {
         ...state,
         news: action.articles,
+      };
+    case SET_HANDLE_SHOW_MORE:
+      return {
+        ...state,
+        showItems:
+          state.showItems >= state.news.length
+            ? state.showItems
+            : state.showItems + 10,
       };
 
     default:
@@ -22,6 +32,10 @@ const NewsReducer = (state = inicialState, action) => {
 export const setNews = (articles) => ({
   type: SET_NEWS,
   articles,
+});
+export const handleShowMore = (showItems) => ({
+  type: SET_HANDLE_SHOW_MORE,
+  showItems,
 });
 
 export const getNewsThunkCreator = () => async (dispatch) => {
